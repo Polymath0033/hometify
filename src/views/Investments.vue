@@ -3,7 +3,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import type { Ref } from 'vue'
-
+import Layout from './Layout.vue'
 import type Investment from '@/types/Investment'
 import { useStore } from '../store/index'
 import FAQ from '../components/FAQ.vue'
@@ -85,23 +85,18 @@ const prev_ = () => {
 }
 </script>
 <template>
-  <div v-for="(carousel, index) in carousel_" :key="carousel.left" v-show="current === index">
-    <carousel-image
-      :middle="carousel.middle"
-      :left="carousel.left"
-      :right="carousel.right"
-      @next_="next_"
-      @prev_="prev_"
-    ></carousel-image>
-    <Detail
-      :title="carousel.title"
-      :location="carousel.location"
-      :unit="carousel.unit"
-      :property_type="carousel.property_type"
-      :tenure="carousel.tenure"
-      :rate="carousel.rate"
-    />
-  </div>
-  <FAQ :faqs="faqs" />
+  <Layout>
+    <template #main>
+
+
+      <div v-for="(carousel, index) in carousel_" :key="carousel.left" v-show="current === index">
+        <carousel-image :middle="carousel.middle" :left="carousel.left" :right="carousel.right" @next_="next_"
+          @prev_="prev_"></carousel-image>
+        <Detail :title="carousel.title" :location="carousel.location" :unit="carousel.unit"
+          :property_type="carousel.property_type" :tenure="carousel.tenure" :rate="carousel.rate" />
+      </div>
+      <FAQ :faqs="faqs" />
+    </template>
+  </Layout>
 </template>
 <style scoped></style>

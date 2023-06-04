@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Layout from './Layout.vue'
 import Hero from '../components/Hero.vue'
 import Section from '../components/Section.vue'
 import Advertisement from '../components/Advertisement.vue'
@@ -22,11 +23,15 @@ const faqs: { question: string; answer: string }[] = [
 </script>
 
 <template>
-  <main>
-    <Hero />
-    <Section />
-    <Advertisement />
-    <HowItWorks />
-    <FAQ :faqs="faqs" />
-  </main>
+  <Layout>
+    <template #main>
+      <main>
+        <Hero />
+        <Section />
+        <Advertisement />
+        <HowItWorks />
+        <FAQ :faqs="faqs" />
+      </main>
+    </template>
+  </Layout>
 </template>
